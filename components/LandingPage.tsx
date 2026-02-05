@@ -144,7 +144,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onSelectService, onOpenDirect
 
       <div className="mt-20 p-8 glass-card rounded-3xl border border-red-800/20 text-center max-w-3xl mx-auto">
         <h4 className="text-lg font-bold mb-2 text-white">¿Necesita asesoría personalizada?</h4>
-        <p className="text-slate-400 mb-6">Iván Rodriguez está a su disposición para ayudarle con procesos legales complejos en Barrancabermeja.</p>
+        <p className="text-slate-400 mb-6">Iván Rodriguez está a su disposición para ayudarle con tramites digitales en Barrancabermeja.</p>
         <a 
           href="https://wa.me/573052319414" 
           target="_blank" 
