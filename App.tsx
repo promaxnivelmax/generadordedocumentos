@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import LandingPage from './components/LandingPage';
 import PetitionForm from './components/PetitionForm';
 import BackgroundAnimation from './components/BackgroundAnimation';
@@ -48,6 +49,8 @@ const App: React.FC = () => {
           <p className="text-slate-500 text-xs italic">Comprometidos con la justicia y el servicio social.</p>
         </div>
       </footer>
+      
+      <SpeedInsights />
     </div>
   );
 };
