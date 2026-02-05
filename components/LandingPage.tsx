@@ -4,6 +4,7 @@ import { ServiceType } from '../types';
 
 interface LandingPageProps {
   onSelectService: (service: ServiceType) => void;
+  onOpenDirectory: () => void;
 }
 
 interface ServiceCard {
@@ -83,7 +84,7 @@ const services: ServiceCard[] = [
   }
 ];
 
-const LandingPage: React.FC<LandingPageProps> = ({ onSelectService }) => {
+const LandingPage: React.FC<LandingPageProps> = ({ onSelectService, onOpenDirectory }) => {
   return (
     <div className="w-full max-w-6xl mx-auto py-12 animate-in fade-in duration-1000">
       <div className="text-center mb-16">
@@ -91,11 +92,22 @@ const LandingPage: React.FC<LandingPageProps> = ({ onSelectService }) => {
           Servicios Gratuitos de Iván Rodriguez
         </div>
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
-          Portafolio de <span className="text-red-600">Documentos Legales</span>
+          Oficina Virtual <span className="text-red-600">Comunitaria</span>
         </h1>
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-          Genere formatos profesionales en segundos. Herramienta diseñada por Iván Rodriguez para servir a la comunidad.
+        <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
+          Genere formatos profesionales en segundos o acceda a los principales portales de trámites nacionales. Herramienta diseñada para servir a Barrancabermeja.
         </p>
+        
+        <button
+          onClick={onOpenDirectory}
+          className="inline-flex items-center gap-3 px-10 py-5 bg-white text-red-900 rounded-2xl font-black text-xl hover:bg-red-50 transition-all shadow-2xl shadow-red-900/40 border-b-4 border-red-700"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 11V6.94l3 3V11M10 14h4M10 17h4" />
+          </svg>
+          DIRECTORIO DE TRÁMITES
+        </button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
