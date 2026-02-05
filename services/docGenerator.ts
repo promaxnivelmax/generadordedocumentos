@@ -124,7 +124,7 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
               
               <div class="section-title" style="margin-top:25px;">Contacto</div>
               <div class="data-item"><b>Celular</b> <p>${data.telefono}</p></div>
-              <div class="data-item"><b>Correo</b> <p>${data.correoElectronico}</p></div>
+              <div class="data-item"><b>Email</b> <p>${data.correoElectronico}</p></div>
               <div class="data-item"><b>Residencia</b> <p>${data.direccion}<br>${data.barrio}<br>${data.ciudadResidencia}</p></div>
 
               ${data.referencias && data.referencias.length > 0 ? `
@@ -133,8 +133,8 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
                 <div class="ref-detailed">
                   <span class="ref-name">${r.nombre}</span>
                   <span class="ref-prof">${r.profesion}</span>
-                  <span class="ref-phone">Cel: ${r.celular}</span>
-                  <span style="font-size: 7.5pt; color: #888; text-transform: uppercase;">Referencia ${r.tipo}</span>
+                  <span class="ref-phone">Tel: ${r.celular}</span>
+                  <span style="font-size: 7.5pt; color: #888; text-transform: uppercase;">Ref. ${r.tipo}</span>
                 </div>
               `).join('')}
               ` : ''}
@@ -196,15 +196,14 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
     return;
   }
 
-  // Mapeo de nombres de archivos en español
   const fileNames: Record<ServiceType, string> = {
     'PETITION': 'Prescripcion_Comparendo_RNMC',
     'GENERAL_PETITION': 'Derecho_Peticion_General',
-    'RESIGNATION': 'Carta_Renuncia_Laboral',
-    'PERSONAL_REF': 'Certificado_Referencia_Personal',
-    'FAMILY_REF': 'Certificado_Referencia_Familiar',
-    'POWER_OF_ATTORNEY': 'Poder_Amplio_y_Suficiente',
-    'WORK_REF': 'Certificacion_Laboral',
+    'RESIGNATION': 'Carta_Renuncia_Laboral_Formal',
+    'PERSONAL_REF': 'Referencia_Personal_Formal',
+    'FAMILY_REF': 'Referencia_Familiar_Formal',
+    'POWER_OF_ATTORNEY': 'Poder_Especial_Amplio',
+    'WORK_REF': 'Certificacion_Laboral_Iván_Rodriguez',
     'RESUME': 'Hoja_De_Vida'
   };
 
@@ -231,43 +230,28 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
       `;
       break;
 
-    case 'GENERAL_PETITION':
-      bodyContent = `
-        <div style="margin-bottom: 25px;">${data.ciudadFecha}</div>
-        <div style="margin-bottom: 25px; font-weight: bold;">Señores<br>${data.entidadDirigida || 'A QUIEN CORRESPONDA'}<br>E. S. D.</div>
-        <div style="margin-bottom: 25px; font-weight: bold; text-decoration: underline;">ASUNTO: DERECHO DE PETICIÓN (Art. 23 C.P.)</div>
-        <div style="text-align: justify; line-height: 1.8; font-size: 12pt;">
-          Yo, <b>${data.nombresApellidos}</b>, ciudadano(a) mayor de edad e identificado(a) como aparece al pie de mi firma, en ejercicio del derecho fundamental de petición consagrado en el artículo 23 de la Constitución Política de Colombia y conforme a las disposiciones de la Ley 1755 de 2015, me permito presentar ante ustedes la siguiente solicitud respetuosa:
-          <br><br>
-          <b>FUNDAMENTOS DE HECHO:</b><br>${data.hechosPeticion}
-          <br><br>
-          <b>PETICIÓN CONCRETA:</b><br>${data.pretensionesPeticion}
-          <br><br>
-          Para efectos de notificación, recibiré respuesta en la dirección: <b>${data.direccion}</b>, barrio <b>${data.barrio}</b>, o al correo electrónico <b>${data.correoElectronico}</b>.
-        </div>
-      `;
-      break;
-
     case 'RESIGNATION':
       bodyContent = `
         <div style="margin-bottom: 25px;">${data.ciudadFecha}</div>
         <div style="margin-bottom: 35px; font-weight: bold;">
           Señores<br>
           <b>${data.empresaNombre}</b><br>
-          Departamento de Talento Humano / Gerencia General<br>
-          Ciudad.
+          Departamento de Gestión Humana / Dirección Administrativa<br>
+          E. S. D.
         </div>
         <div style="margin-bottom: 25px; font-weight: bold; text-decoration: underline;">ASUNTO: RENUNCIA VOLUNTARIA E IRREVOCABLE</div>
         <div style="text-align: justify; line-height: 1.8; font-size: 12pt;">
           Respetados señores:
           <br><br>
-          Por medio de la presente, yo <b>${data.nombresApellidos}</b>, identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b>, me permito presentar ante ustedes mi renuncia formal, voluntaria e irrevocable al cargo de <b>${data.cargoDesempenado}</b> que he venido desempeñando con orgullo en su prestigiosa organización. 
+          Por medio de la presente, yo <b>${data.nombresApellidos}</b>, identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b>, me permito informar mi decisión de presentar <b>RENUNCIA VOLUNTARIA E IRREVOCABLE</b> al cargo de <b>${data.cargoDesempenado}</b>, el cual he venido desempeñando en su organización con total compromiso y dedicación.
           <br><br>
-          Esta decisión responde a motivos estrictamente personales y de crecimiento profesional que me impulsan a iniciar una nueva etapa en mi carrera. Informo que mi último día de vinculación laboral efectiva será el próximo <b>${data.ultimoDiaLaboral}</b>, fecha en la cual haré entrega formal de mis funciones y responsabilidades asignadas.
+          Esta difícil determinación obedece a razones de índole personal y a la búsqueda de nuevos retos profesionales que requieren mi atención inmediata. De acuerdo con lo anterior, notifico que mi último día de labores efectivas será el <b>${data.ultimoDiaLaboral}</b>.
           <br><br>
-          Quiero expresar mi más profundo agradecimiento a la empresa, a la dirección y a mis compañeros de trabajo por la confianza depositada en mi gestión, así como por las invaluables oportunidades de aprendizaje y desarrollo profesional que me brindaron durante mi permanencia. Me llevo una experiencia sumamente enriquecedora de esta institución.
+          Deseo expresar mi más profundo agradecimiento a la empresa, a sus directivos y a todo el equipo de trabajo por la confianza depositada en mi gestión. La oportunidad de formar parte de esta institución ha sido una experiencia sumamente enriquecedora, permitiéndome crecer profesionalmente y fortalecer mis competencias en un entorno de excelencia.
           <br><br>
-          Quedo a su entera disposición para colaborar en el proceso de empalme y transición de cargo, asegurando que mis labores queden al día y en orden.
+          Durante este periodo previo a mi retiro, me pongo a su entera disposición para facilitar el proceso de transición, realizar la entrega formal de mi cargo y asegurar que todas mis responsabilidades queden debidamente documentadas y al día, minimizando cualquier impacto en la operación.
+          <br><br>
+          Nuevamente, gracias por el apoyo recibido y les deseo los mayores éxitos en sus proyectos futuros.
         </div>
       `;
       break;
@@ -279,16 +263,16 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
         <br><br>
         <div style="text-align: center; margin-bottom: 45px; font-weight: bold; font-size: 16pt; text-decoration: underline;">CERTIFICACIÓN DE REFERENCIA ${type === 'FAMILY_REF' ? 'FAMILIAR' : 'PERSONAL'}</div>
         <br>
-        <div style="text-align: justify; line-height: 2.0; font-size: 12pt;">
-          <b>A QUIEN CORRESPONDA:</b>
+        <div style="text-align: justify; line-height: 1.8; font-size: 12pt;">
+          <b>A QUIEN PUEDA INTERESAR:</b>
           <br><br>
-          El suscrito, <b>${data.nombresApellidos}</b>, ciudadano(a) mayor de edad, identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b>, domiciliado en la ciudad de <b>${data.ciudadResidencia}</b>, hace constar por medio del presente documento que conoce de vista, trato y comunicación desde hace aproximadamente <b>${data.tiempoConocimiento}</b> al señor(a) <b>${data.nombreReferenciado}</b>, identificado(a) con cédula de ciudadanía No. <b>${data.cedulaReferenciado}</b>.
+          El suscrito(a), <b>${data.nombresApellidos}</b>, mayor de edad, identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b>, domiciliado(a) en la ciudad de <b>${data.ciudadResidencia}</b>, se permite certificar que conoce de vista, trato y comunicación al señor(a) <b>${data.nombreReferenciado}</b>, identificado(a) con cédula de ciudadanía No. <b>${data.cedulaReferenciado}</b>, desde hace aproximadamente <b>${data.tiempoConocimiento}</b>.
           <br><br>
-          Durante el tiempo de nuestro conocimiento, el/la referido(a) ha demostrado poseer una intachable conducta moral, altos valores éticos, un gran sentido de la responsabilidad y honestidad absoluta en todos sus actos. Por tal motivo, doy fe de su buen nombre y su capacidad para asumir compromisos con seriedad y excelencia.
+          Me complace manifestar que, durante el tiempo de nuestro conocimiento, el/la referido(a) ha demostrado ser una persona íntegra, responsable, honesta y de excelentes calidades humanas. Su comportamiento ciudadano ha sido ejemplar, destacándose por su alto sentido de la ética, puntualidad y compromiso en todas las actividades que emprende.
           <br><br>
-          No tengo reserva alguna en recomendarlo(a) ampliamente para cualquier actividad, cargo o responsabilidad que se le asigne, pues tengo la plena seguridad de que su desempeño será ejemplar.
+          En virtud de sus notables virtudes morales y su espíritu de superación, no tengo reserva alguna en recomendarlo(a) ampliamente para cualquier cargo, actividad comercial o responsabilidad que se le asigne, pues tengo la plena convicción de que su desempeño y lealtad estarán a la altura de las expectativas más exigentes.
           <br><br>
-          La presente certificación se expide a solicitud de la parte interesada a los <b>${new Date().getDate()}</b> días del mes de <b>${new Date().toLocaleDateString('es-CO', {month: 'long'})}</b> de <b>${new Date().getFullYear()}</b>.
+          La presente certificación se expide a solicitud de la parte interesada el día <b>${new Date().getDate()}</b> de <b>${new Date().toLocaleDateString('es-CO', {month: 'long'})}</b> de <b>${new Date().getFullYear()}</b>.
         </div>
       `;
       break;
@@ -300,29 +284,46 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
         <div style="text-align: center; margin-bottom: 40px; font-weight: bold; font-size: 16pt; text-decoration: underline;">PODER ESPECIAL, AMPLIO Y SUFICIENTE</div>
         <br>
         <div style="text-align: justify; line-height: 1.8; font-size: 12pt;">
-          Yo, <b>${data.nombresApellidos}</b>, mayor de edad, plenamente identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b> y con domicilio en la ciudad de <b>${data.ciudadResidencia}</b>, manifiesto que por medio del presente documento confiero <b>PODER ESPECIAL, AMPLIO Y SUFICIENTE</b> al señor(a) <b>${data.nombreApoderado}</b>, también mayor de edad e identificado(a) con cédula No. <b>${data.cedulaApoderado}</b>, para que en mi nombre y representación adelante todas las gestiones administrativas, legales y trámites ante las autoridades competentes relacionados con: 
+          Yo, <b>${data.nombresApellidos}</b>, mayor de edad, identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b> y domiciliado(a) en la ciudad de <b>${data.ciudadResidencia}</b>, manifiesto que por medio del presente documento confiero <b>PODER ESPECIAL, AMPLIO Y SUFICIENTE</b> al señor(a) <b>${data.nombreApoderado}</b>, identificado(a) con cédula de ciudadanía No. <b>${data.cedulaApoderado}</b>, para que en mi nombre y representación adelante todas las gestiones administrativas, trámites legales y actuaciones ante las autoridades competentes relacionados con: 
           <br><br>
           <b>${data.tramiteEspecifico}</b>
           <br><br>
-          Mi apoderado(a) queda expresamente facultado(a) para radicar solicitudes, firmar documentos públicos o privados, presentar peticiones, recibir notificaciones, interponer recursos y, en general, realizar cualquier actuación que sea necesaria y conducente para el cabal cumplimiento del encargo aquí otorgado.
+          Mi apoderado(a) queda expresamente facultado(a) para radicar solicitudes, firmar formularios públicos o privados, presentar memoriales, recibir notificaciones, interponer recursos de ley y, en general, realizar cualquier actuación que sea necesaria, conducente y legítima para el cabal cumplimiento del encargo aquí otorgado.
           <br><br>
-          En señal de aceptación de las facultades conferidas, se firma el presente documento en la ciudad de <b>${data.ciudadResidencia}</b>.
+          En señal de aceptación de las facultades conferidas, se firma el presente documento en la ciudad de <b>${data.ciudadResidencia}</b>, a los <b>${new Date().getDate()}</b> días del mes de <b>${new Date().toLocaleDateString('es-CO', {month: 'long'})}</b> de <b>${new Date().getFullYear()}</b>.
+        </div>
+      `;
+      break;
+
+    case 'GENERAL_PETITION':
+      bodyContent = `
+        <div style="margin-bottom: 25px;">${data.ciudadFecha}</div>
+        <div style="margin-bottom: 25px; font-weight: bold;">Señores<br>${data.entidadDirigida || 'A QUIEN CORRESPONDA'}<br>E. S. D.</div>
+        <div style="margin-bottom: 25px; font-weight: bold; text-decoration: underline;">ASUNTO: DERECHO DE PETICIÓN (Art. 23 C.P.)</div>
+        <div style="text-align: justify; line-height: 1.8; font-size: 12pt;">
+          Yo, <b>${data.nombresApellidos}</b>, mayor de edad e identificado(a) con <b>${data.tipoDocumento}</b> No. <b>${data.numeroDocumento}</b>, en ejercicio del derecho fundamental de petición consagrado en el artículo 23 de la Constitución Política y regulado por la Ley 1755 de 2015, presento ante ustedes la siguiente solicitud:
+          <br><br>
+          <b>HECHOS:</b><br>${data.hechosPeticion}
+          <br><br>
+          <b>PETICIÓN:</b><br>${data.pretensionesPeticion}
+          <br><br>
+          Agradezco de antemano la atención prestada y quedo atento a su pronta respuesta en la dirección <b>${data.direccion}</b> o al correo electrónico <b>${data.correoElectronico}</b>.
         </div>
       `;
       break;
 
     default:
-      bodyContent = `<div style="padding: 50px;">Contenido de documento profesional generado.</div>`;
+      bodyContent = `<div style="padding: 50px;">Documento profesional en proceso de generación...</div>`;
   }
 
   const footer = `
-    <div style="margin-top: 80px;">
-      Cordialmente,<br><br><br><br>
-      <div style="border-top: 1px solid #000; width: 250px; margin-bottom: 10px;"></div>
+    <div style="margin-top: 70px;">
+      Atentamente,<br><br><br><br>
+      <div style="border-top: 1px solid #000; width: 280px; margin-bottom: 10px;"></div>
       <b>${data.nombresApellidos}</b><br>
       ${data.tipoDocumento} No. ${data.numeroDocumento}<br>
-      Teléfono: ${data.telefono}<br>
-      Ciudad: ${data.ciudadResidencia}
+      Celular: ${data.telefono}<br>
+      Email: ${data.correoElectronico}
     </div>
   `;
 
@@ -331,7 +332,7 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
       <head>
         <meta charset="utf-8">
         <style>
-          body { font-family: 'Arial', sans-serif; padding: 2.5cm; color: #000; font-size: 12pt; background: #fff; }
+          body { font-family: 'Arial', sans-serif; padding: 2.5cm; color: #000; font-size: 12pt; background: #fff; text-align: justify; }
           @page { size: letter; margin: 1in; }
         </style>
       </head>
@@ -346,7 +347,7 @@ export const generateDocument = async (type: ServiceType, data: DocumentData): P
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `${fileNames[type] || 'Documento'}_${data.numeroDocumento}.doc`;
+  link.download = `${fileNames[type] || 'Documento_Legal'}_${data.numeroDocumento}.doc`;
   link.click();
   URL.revokeObjectURL(url);
 };
