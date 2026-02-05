@@ -17,9 +17,20 @@ interface ServiceCard {
 
 const services: ServiceCard[] = [
   {
+    id: 'RESUME',
+    title: 'Hoja de Vida Premium',
+    description: 'Generador exclusivo de currículum profesional en PDF con diseño moderno, iconos y estructura optimizada.',
+    color: 'from-red-600 to-red-800',
+    icon: (
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+      </svg>
+    )
+  },
+  {
     id: 'GENERAL_PETITION',
     title: 'Petición General',
-    description: 'Derecho de petición estándar dirigido a cualquier entidad o persona.',
+    description: 'Derecho de petición estándar premium dirigido a cualquier entidad o persona.',
     color: 'from-red-700 to-red-900',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -30,7 +41,7 @@ const services: ServiceCard[] = [
   {
     id: 'PETITION',
     title: 'RNMC Prescripción',
-    description: 'Solicitud específica de prescripción de multas de convivencia (RNMC) de la Policía Nacional.',
+    description: 'Solicitud premium de prescripción de multas de convivencia (RNMC) de la Policía Nacional.',
     color: 'from-red-600 to-red-800',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -41,7 +52,7 @@ const services: ServiceCard[] = [
   {
     id: 'RESIGNATION',
     title: 'Renuncia Voluntaria',
-    description: 'Carta de renuncia formal e irrevocable con lenguaje técnico profesional.',
+    description: 'Carta de renuncia formal premium con lenguaje técnico profesional especializado.',
     color: 'from-stone-700 to-stone-900',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +63,7 @@ const services: ServiceCard[] = [
   {
     id: 'PERSONAL_REF',
     title: 'Referencia Personal',
-    description: 'Certificación de conducta bajo gravedad de juramento para trámites.',
+    description: 'Certificación premium de conducta para trámites oficiales de alta importancia.',
     color: 'from-red-800 to-stone-900',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -63,7 +74,7 @@ const services: ServiceCard[] = [
   {
     id: 'FAMILY_REF',
     title: 'Referencia Familiar',
-    description: 'Certificación formal de parentesco y honorabilidad familiar.',
+    description: 'Certificación formal premium de parentesco y honorabilidad familiar.',
     color: 'from-red-900 to-red-700',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +85,7 @@ const services: ServiceCard[] = [
   {
     id: 'POWER_OF_ATTORNEY',
     title: 'Poder Amplio',
-    description: 'Autorización legal amplia para que terceros gestionen sus trámites.',
+    description: 'Autorización legal premium para que terceros gestionen sus trámites con validez oficial.',
     color: 'from-stone-600 to-red-900',
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -87,74 +98,70 @@ const services: ServiceCard[] = [
 const LandingPage: React.FC<LandingPageProps> = ({ onSelectService, onOpenDirectory }) => {
   return (
     <div className="w-full max-w-6xl mx-auto py-12 animate-in fade-in duration-1000">
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 relative">
         <div className="inline-block px-4 py-1 mb-4 text-xs font-bold tracking-widest text-white uppercase bg-red-800/80 rounded-full border border-red-600/50 shadow-lg shadow-red-900/20">
-          Servicios Gratuitos de Iván Rodriguez
+          Servicios Premium de Iván Rodriguez
         </div>
         <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white">
           Oficina Virtual <span className="text-red-600">Comunitaria</span>
         </h1>
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-10">
-          Genere formatos profesionales en segundos o acceda a los principales portales de trámites nacionales. Herramienta diseñada para servir a Barrancabermeja.
+        <p className="text-slate-400 text-lg max-w-2xl mx-auto mb-20">
+          Genere formatos de alta calidad en segundos o acceda a nuestro exclusivo directorio de trámites nacionales.
         </p>
         
-        <button
-          onClick={onOpenDirectory}
-          className="inline-flex items-center gap-3 px-10 py-5 bg-white text-red-900 rounded-2xl font-black text-xl hover:bg-red-50 transition-all shadow-2xl shadow-red-900/40 border-b-4 border-red-700"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 11V6.94l3 3V11M10 14h4M10 17h4" />
-          </svg>
-          DIRECTORIO DE TRÁMITES
-        </button>
+        <div className="relative inline-block group">
+          {/* Indicador visual reposicionado: Flota a la derecha del botón */}
+          <div className="absolute top-1/2 -right-16 md:-right-24 -translate-y-1/2 flex items-center gap-2 animate-bounce pointer-events-none z-20">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-red-500 rotate-90 hidden md:block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+            </svg>
+            <div className="bg-red-600 text-white font-black px-4 py-2 rounded-2xl shadow-2xl border-2 border-red-400/50 flex flex-col items-center">
+               <span className="text-[10px] tracking-tighter uppercase leading-none mb-1">Presiona aquí</span>
+               <span className="text-xs whitespace-nowrap">CONSULTE EL DIRECTORIO</span>
+            </div>
+          </div>
+          
+          <button
+            onClick={onOpenDirectory}
+            className="relative z-10 inline-flex items-center gap-4 px-12 py-7 bg-white text-red-900 rounded-3xl font-black text-2xl hover:bg-red-50 transition-all shadow-[0_20px_50px_rgba(185,28,28,0.4)] border-b-8 border-red-700 active:translate-y-2 active:border-b-0 hover:scale-105"
+          >
+            <div className="p-3 bg-red-600 rounded-2xl text-white shadow-inner">
+               <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2z" />
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 11V6.94l3 3V11M10 14h4M10 17h4" />
+               </svg>
+            </div>
+            DIRECTORIO DE TRÁMITES
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 mt-8">
         {services.map((service) => (
           <button
             key={service.id}
             onClick={() => onSelectService(service.id)}
-            className="group relative glass-card p-8 rounded-3xl border border-white/5 hover:border-red-500/30 transition-all text-left overflow-hidden transform hover:-translate-y-1"
+            className="group relative glass-card p-8 rounded-3xl border border-white/5 hover:border-red-500/40 transition-all text-left overflow-hidden transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-red-900/20"
           >
-            {/* Resplandor de fondo */}
+            <div className="absolute top-4 right-4 bg-red-600/20 border border-red-500/30 text-[10px] font-black text-red-400 px-2 py-0.5 rounded uppercase tracking-tighter">Premium</div>
             <div className={`absolute -right-8 -top-8 w-32 h-32 bg-gradient-to-br ${service.color} opacity-5 group-hover:opacity-15 blur-2xl transition-opacity`}></div>
-            
-            <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-6 shadow-lg shadow-black/20 group-hover:scale-110 transition-transform`}>
+            <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-6 shadow-xl shadow-black/20 group-hover:scale-110 transition-transform`}>
               {service.icon}
             </div>
-            
-            <h3 className="text-xl font-bold mb-3 text-white group-hover:text-red-400 transition-colors">
+            <h3 className="text-2xl font-bold mb-3 text-white group-hover:text-red-400 transition-colors">
               {service.title}
             </h3>
-            
             <p className="text-slate-400 text-sm leading-relaxed mb-6">
               {service.description}
             </p>
-            
-            <div className="flex items-center text-xs font-bold text-red-500 uppercase tracking-widest group-hover:translate-x-1 transition-transform">
-              Generar ahora
+            <div className="flex items-center text-xs font-black text-red-500 uppercase tracking-widest group-hover:translate-x-2 transition-transform">
+              Generar Documento
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>
           </button>
         ))}
-      </div>
-
-      <div className="mt-20 p-8 glass-card rounded-3xl border border-red-800/20 text-center max-w-3xl mx-auto">
-        <h4 className="text-lg font-bold mb-2 text-white">¿Necesita asesoría personalizada?</h4>
-        <p className="text-slate-400 mb-6">Iván Rodriguez está a su disposición para ayudarle con tramites digitales en Barrancabermeja.</p>
-        <a 
-          href="https://wa.me/573052319414" 
-          target="_blank" 
-          className="inline-flex items-center gap-2 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-xl font-bold transition-all shadow-xl shadow-green-900/30"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.588-5.946 0-6.556 5.332-11.891 11.891-11.891 3.181 0 6.167 1.24 8.413 3.488 2.246 2.248 3.484 5.232 3.484 8.402 0 6.556-5.332 11.891-11.891 11.891-2.01 0-3.987-.512-5.747-1.484l-6.249 1.643zm6.471-3.64c1.559.925 3.327 1.413 5.352 1.413 5.518 0 10.011-4.493 10.011-10.011 0-5.518-4.493-10.011-10.011-10.011-2.67 0-5.183 1.042-7.071 2.931s-2.93 4.401-2.93 7.08c0 2.124.582 4.197 1.682 6.001l-.251.417-1.117 4.08 4.195-1.103-.23.133zm11.378-7.508c-.287-.144-1.7-.839-1.963-.933-.264-.093-.455-.144-.646.144-.19.287-.738.933-.905 1.122-.167.189-.333.212-.619.069-.287-.144-1.21-.447-2.305-1.423-.852-.759-1.426-1.7-1.593-1.986-.167-.287-.018-.442.125-.584.129-.127.287-.333.43-.5.144-.167.191-.287.287-.478.096-.191.048-.359-.024-.503-.072-.144-.646-1.554-.885-2.128-.233-.559-.47-.482-.646-.492l-.549-.01c-.19 0-.501.072-.763.359-.263.287-1 1.004-1 2.447 0 1.442 1.051 2.836 1.196 3.028.144.191 2.067 3.156 5.006 4.428.699.303 1.246.484 1.671.62.702.223 1.341.191 1.847.116.564-.083 1.7-.694 1.939-1.364.239-.67.239-1.243.167-1.363-.071-.121-.263-.192-.549-.336z"/>
-          </svg>
-          WhatsApp de Iván Rodriguez
-        </a>
       </div>
     </div>
   );

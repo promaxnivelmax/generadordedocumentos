@@ -6,42 +6,69 @@ export type ServiceType =
   | 'PERSONAL_REF' 
   | 'FAMILY_REF' 
   | 'POWER_OF_ATTORNEY' 
-  | 'WORK_REF';
+  | 'WORK_REF'
+  | 'RESUME';
+
+export interface StudyEntry {
+  id: string;
+  nivel: string;
+  institucion: string;
+  titulo: string;
+  fechaGrado: string;
+  ciudad: string;
+}
+
+export interface ExperienceEntry {
+  id: string;
+  empresa: string;
+  cargo: string;
+  fechaInicio: string;
+  fechaFinal: string;
+  ciudad: string;
+}
+
+export interface ReferenceEntry {
+  id: string;
+  nombre: string;
+  profesion: string;
+  celular: string;
+  tipo: 'Personal' | 'Familiar';
+}
 
 export interface DocumentData {
-  // Common fields
-  ciudadFecha: string;
   nombresApellidos: string;
-  tipoDocumento: string;
+  cargoProfesion: string;
   numeroDocumento: string;
-  ciudadResidencia: string;
-  correoElectronico: string;
+  tipoDocumento: string;
+  lugarExpedicion: string;
+  fechaNacimiento: string;
+  lugarNacimiento: string;
   telefono: string;
-  
-  // Petition (Prescription) specific
+  correoElectronico: string;
+  direccion: string;
+  barrio: string;
+  ciudadResidencia: string;
+  ciudadFecha: string;
+  perfilProfesional?: string;
+  fotoBase64?: string;
+  estudios?: StudyEntry[];
+  experiencias?: ExperienceEntry[];
+  referencias?: ReferenceEntry[];
   numeroComparendo?: string;
   numeroExpediente?: string;
   fechaComparendo?: string;
-  numeroTurno?: string;
-  
-  // General Petition specific
+  numeroTurno?: string; // Nuevo campo requerido
   entidadDirigida?: string;
   asuntoPeticion?: string;
   hechosPeticion?: string;
   pretensionesPeticion?: string;
-  
-  // Resignation specific
   empresaNombre?: string;
   cargoDesempenado?: string;
   ultimoDiaLaboral?: string;
-  
-  // Reference specific
   nombreReferenciado?: string;
   cedulaReferenciado?: string;
   tiempoConocimiento?: string;
   parentesco?: string;
-  
-  // Power of Attorney specific
   nombreApoderado?: string;
   cedulaApoderado?: string;
   tramiteEspecifico?: string;

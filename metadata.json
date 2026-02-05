@@ -1,5 +1,8 @@
+
 {
   "name": "Servicios Gratis de Iván Rodriguez - Documentos Legales",
   "description": "Herramienta gratuita creada por Iván Rodriguez para generar derechos de petición, renuncias, referencias y poderes de forma profesional.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [
+    "camera"
+  ]
 }
