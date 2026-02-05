@@ -89,7 +89,7 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-300 ml-1">Sus Nombres y Apellidos</label>
+            <label className="text-sm font-semibold text-slate-300 ml-1">Sus Nombres y Apellidos (Quien firma)</label>
             <input
               required
               type="text"
@@ -115,7 +115,7 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-300 ml-1">Tipo Identificación</label>
+            <label className="text-sm font-semibold text-slate-300 ml-1">Su Tipo Identificación</label>
             <select name="tipoDocumento" value={formData.tipoDocumento} onChange={handleChange} className="w-full bg-stone-900/50 border border-white/5 rounded-xl px-4 py-3 text-white">
               <option value="Cédula de Ciudadanía">Cédula de Ciudadanía</option>
               <option value="Cédula de Extranjería">Cédula de Extranjería</option>
@@ -123,7 +123,7 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
             </select>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-300 ml-1">No. Documento</label>
+            <label className="text-sm font-semibold text-slate-300 ml-1">Su No. Documento</label>
             <input required type="text" name="numeroDocumento" value={formData.numeroDocumento} onChange={handleChange} className="w-full bg-stone-900/50 border border-white/5 rounded-xl px-4 py-3 text-white" />
           </div>
           <div className="space-y-2">
@@ -179,7 +179,6 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
             </div>
           )}
 
-          {/* Otros tipos de servicio siguen el mismo patrón visual */}
           {serviceType === 'RESIGNATION' && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -196,13 +195,52 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
               </div>
             </div>
           )}
+
+          {(serviceType === 'PERSONAL_REF' || serviceType === 'FAMILY_REF') && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Nombre de la Persona que Referencia</label>
+                <input required name="nombreReferenciado" value={formData.nombreReferenciado} onChange={handleChange} placeholder="Ej. Maria Lopez" className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Cédula del Referenciado</label>
+                <input required name="cedulaReferenciado" value={formData.cedulaReferenciado} onChange={handleChange} className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Tiempo de Conocimiento (Años/Meses)</label>
+                <input required name="tiempoConocimiento" value={formData.tiempoConocimiento} onChange={handleChange} placeholder="Ej. 5 años" className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+              </div>
+              {serviceType === 'FAMILY_REF' && (
+                <div className="space-y-2">
+                  <label className="text-xs font-bold text-slate-400 uppercase">Parentesco</label>
+                  <input required name="parentesco" value={formData.parentesco} onChange={handleChange} placeholder="Ej. Hermano, Primo" className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+                </div>
+              )}
+            </div>
+          )}
+
+          {serviceType === 'POWER_OF_ATTORNEY' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Nombre del Apoderado (Autorizado)</label>
+                <input required name="nombreApoderado" value={formData.nombreApoderado} onChange={handleChange} className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Cédula del Apoderado</label>
+                <input required name="cedulaApoderado" value={formData.cedulaApoderado} onChange={handleChange} className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white" />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <label className="text-xs font-bold text-slate-400 uppercase">Trámite Específico a Autorizar</label>
+                <textarea required name="tramiteEspecifico" value={formData.tramiteEspecifico} onChange={handleChange} placeholder="Ej. Reclamar resultados médicos, retirar documentos de la alcaldía..." className="w-full bg-stone-900/80 border border-white/5 rounded-xl px-4 py-2.5 text-white h-20" />
+              </div>
+            </div>
+          )}
           
-          {/* Se omiten por brevedad el resto de campos ya que mantienen la lógica anterior pero con el nuevo estilo visual */}
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-slate-300 ml-1">Correo Notificación</label>
+            <label className="text-sm font-semibold text-slate-300 ml-1">Correo de Notificación</label>
             <input required type="email" name="correoElectronico" value={formData.correoElectronico} onChange={handleChange} className="w-full bg-stone-900/50 border border-white/5 rounded-xl px-4 py-3 text-white" />
           </div>
           <div className="space-y-2">
@@ -222,7 +260,7 @@ const PetitionForm: React.FC<PetitionFormProps> = ({ serviceType }) => {
               : 'bg-gradient-to-r from-red-700 to-red-900 hover:from-red-600 hover:to-red-800 text-white shadow-xl shadow-red-900/20'
           }`}
         >
-          {status === FormStatus.GENERATING ? 'Generando documento...' : 'Generar'}
+          {status === FormStatus.GENERATING ? 'Generando documento...' : 'Generar Documento Word'}
         </button>
       </form>
     </div>
