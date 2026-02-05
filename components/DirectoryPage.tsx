@@ -87,7 +87,7 @@ const categories: Category[] = [
     ),
     links: [
       { name: 'Consulta SIMIT', url: 'https://fcm.org.co/simit/', description: 'Consulta multas nacional.' },
-      { name: 'Fotomultas Barrancabermeja', url: 'https://tramitesittb.siotweb.com/Fotomultas/Consultas', description: 'Consulta local ITTB.' },
+      { name: 'Comparendos Barrancabermeja', url: 'https://tramitesittb.siotweb.com/Comparendos/Consultas', description: 'Consulta local ITTB.' },
       { name: 'RUNT', url: 'https://portalpublico.runt.gov.co/#/consulta-vehiculo/consulta/consulta-ciudadana', description: 'Consulta ciudadana.' },
       { name: 'Certificados SENA', url: 'https://certificados.sena.edu.co/', description: 'Descarga de títulos.' },
       { name: 'Consulta Cursos de Altura', url: 'https://app2.mintrabajo.gov.co/CentrosEntrenamiento/consulta_ext.aspx', description: 'Ministerio de Trabajo.' }
