@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import LandingPage from './components/LandingPage';
 import PetitionForm from './components/PetitionForm';
 import DirectoryPage from './components/DirectoryPage';
@@ -119,6 +120,8 @@ const App: React.FC = () => {
            Barrancabermeja - Santander - Colombia - {new Date().getFullYear()}
         </div>
       </footer>
+      
+      <SpeedInsights />
     </div>
   );
 };
